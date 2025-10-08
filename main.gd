@@ -3,9 +3,9 @@ extends Node
 @export var mob_scene: PackedScene
 @export var npc_scene: PackedScene
 @export var item_scene: PackedScene
-@export var boid_scene: PackedScene  # NEW: Add your boid scene
+@export var boid_scene: PackedScene  
 @export var mob_count: int = 10
-@export var boid_count: int = 15  # NEW: Number of boids to spawn
+@export var boid_count: int = 15 
 @export var spawn_margin: int = 250
 @export var game_time_limit: float = 30.0
 
@@ -62,7 +62,7 @@ func new_game():
 	spawn_mobs()
 	spawn_npc()
 	
-	# NEW: Spawn boids after NPC is created
+	
 	await get_tree().process_frame
 	spawn_boids()
 	
@@ -135,7 +135,7 @@ func spawn_npc():
 		npc_spawned = true
 		print("NPC spawned at: ", npc.position)
 
-# NEW: Spawn boids that follow the NPC
+
 func spawn_boids():
 	if not boid_scene:
 		print("Boid scene not set!")
@@ -156,7 +156,7 @@ func spawn_boids():
 			rng.randf_range(100, screen_size.y - 100)
 		)
 		
-		# Set the NPC as the target (you'll need to call this from C# side)
+		
 		if boid.has_method("SetTarget"):
 			boid.call("SetTarget", current_npc)
 		
